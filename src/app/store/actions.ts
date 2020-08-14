@@ -12,15 +12,9 @@ export class AddProduct implements Action {
     constructor(public payload: {name:any;value:any}){}
 }
 export class LoadItems implements Action {
-    readonly type = CartActionTypes.LoadItems;
+    readonly type = CartActionTypes.LoadSuccess;
   
     constructor(public payload:{name:any;value:any}) {}
   }
-  export class LoadSuccess implements Action {
-    readonly type = CartActionTypes.LoadSuccess;
   
-    constructor(public payload:any) {}
-  }
-
-  
-export type CartActions = AddProduct | LoadItems;
+export type CartActions = AddProduct | LoadItems ;

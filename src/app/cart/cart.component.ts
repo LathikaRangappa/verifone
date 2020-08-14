@@ -66,7 +66,7 @@ export class CartComponent implements OnInit {
 
 
   downloadFav(obj) {
-    this.toDataURL(obj.urls.small, function (dataUrl) {
+    this.toDataURL(obj, function (dataUrl) {
       console.log(dataUrl)
       var a = document.createElement("a"); //Create <a>
       a.href = dataUrl; //Image Base64 Goes here
@@ -91,34 +91,12 @@ export class CartComponent implements OnInit {
      const dialogRef = this.dialog.open(EditListnameComponent, {
        width: '500px',
        height: '200px',
-       data: obj.name
+       data: obj
      });
      dialogRef.afterClosed().subscribe(result => {
-      var op = {};
-      var uniqNames = [...new Set(result.map(item => item.name))]
-      console.log(uniqNames)
-      uniqNames.forEach((uName: string)=> {
-        result.map(item => {
-          if (item.name === uName) {
-            if (!op[uName]) op[uName] = [];
-            op[uName].push(item.value)
-          }
-        })
-        console.log("----------------------", op);
-        var newOp = Object.keys(op).map(item => {
-          return {
-            name: item,
-            value: op[item].map(opItem => opItem)
-          }
-        }
-        );
-
-        console.log("-----------------", newOp);
-        this.lists = newOp;
-      });
-      
- 
-       console.log(result)
+       console.log(result);
+       obj.name = result;
+      //  this.store.dispatch(new Cart.AddProduct({name:obj.name,value:obj.value}))
      });
    }
  
