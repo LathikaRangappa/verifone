@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCTS } from "./../store/market";
 import { SearchServiceService } from '../search-service.service';
 import { AddFavouriteComponent } from '../add-favourite/add-favourite.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -13,7 +12,6 @@ import * as Cart from "./../store/actions";
 })
 export class ProductsComponent implements OnInit {
 
-  products = PRODUCTS
   response: any;
   lists: any;
   queryString: any;

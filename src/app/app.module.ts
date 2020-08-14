@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
 import { CartComponent } from './cart/cart.component';
-import { ProductComponent } from './product/product.component';
 import { Routes, RouterModule } from '@angular/router';
 import {SearchServiceService} from './search-service.service';
 import{HttpClientModule} from '@angular/common/http'
@@ -33,10 +32,6 @@ const routes: Routes = [
         component: CartComponent
     },
     {
-        path: 'product/:id',
-        component: ProductComponent
-    },
-    {
         path: '**',
         redirectTo: '',
         pathMatch: 'full'
@@ -48,7 +43,6 @@ const routes: Routes = [
     AppComponent,
     ProductsComponent,
     CartComponent,
-    ProductComponent,
     AddFavouriteComponent,
     EditListnameComponent
   ],
