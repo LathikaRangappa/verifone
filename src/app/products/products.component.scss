@@ -1,0 +1,38 @@
+$white: rgb(230, 230, 230);
+
+$accentPrimary: rgb(45, 170, 128);
+$accentSecondary: #008ab3;
+
+.btn-info {
+    background-color: $accentPrimary;
+    color: $white;
+}
+.btn-primary {
+    background-color: $accentSecondary;
+    color: $white;
+}
+.mydivouter {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    background-color: $white;
+}
+
+.mybuttonoverlap {
+    position: absolute;
+    z-index: 2;
+    top: 44px;
+    display: none;
+    left: 20px;
+}
+.mydivouter:hover .mybuttonoverlap {
+    display: block;
+}
+.mybuttonoverlap {
+    .btn {
+        width: 120px;
+        line-height: 30px;
+    }
+    .btn:first-child {
+        margin-bottom: 2em;
+    }
+}
