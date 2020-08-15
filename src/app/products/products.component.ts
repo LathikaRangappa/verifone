@@ -19,10 +19,6 @@ export class ProductsComponent implements OnInit {
   constructor(private service: SearchServiceService,private store:Store<{ items: any ; cart: [] }>, private dialog: MatDialog) { }
   
   ngOnInit() {
-    this.store.select('items').subscribe(data => {
-      console.log(data);
-      this.lists = data;
-    })
   }
   search(query) {
     this.service.getSearchResult(query).subscribe(result => {
@@ -47,8 +43,5 @@ export class ProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
     });
-  }
-  goToFav(){
-    this.store.dispatch(new Cart.LoadItems({name:this.queryString,value:this.response}))
   }
 }

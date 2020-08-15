@@ -37,7 +37,7 @@ export class AddFavouriteComponent implements OnInit {
     this.service.sendData(this.data)
   }
   addToFavourities(listName){
-    this.store.dispatch(new Cart.AddProduct({name:listName,value:this.data.urls.small}))
+    this.store.dispatch(new Cart.AddProduct({name:listName,value:this.data}))
   }
   addNewList(){
     this.showInput = true

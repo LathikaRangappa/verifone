@@ -22,19 +22,6 @@ export class EditListnameComponent implements OnInit {
   updateList() {
     this.dialogRef.close(this.editListName);
   }
-
-  changeKey(originalKey, newKey, arrayObj) {
-    // var newArr = []; 
-    // for (var i = 0; i < arr.length; i++) {
-    //   var obj = arr[i];
-    //   obj[newKey] = obj[originalKey];
-    //   delete (obj[originalKey]);
-    //   newArr.push(obj);
-    // } return newArr;
-    
-  }
-
-
   ngOnInit(): void {
   }
 
