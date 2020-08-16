@@ -109,7 +109,7 @@ modifyObj(data){
           }
         })
       })
-      this.store.dispatch(new Cart.Remove({pName:pname,nName:result,arr:arr}))
+      this.store.dispatch(new Cart.Update({pName:pname,nName:result,arr:arr}))
       this.store.select('cart').subscribe(data => {
       console.log(data['cart'])
         this.modifyObj(data['cart']);

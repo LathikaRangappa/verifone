@@ -6,7 +6,7 @@ export enum CartActionTypes {
     LoadItems = 'Load items from server',
     LoadSuccess = 'Load success',
     UPDATE_PRODUCT = "UPDATE_PRODUCT",
-    Remove = "Remove"
+    Update = "Update"
 }
 
 export class AddProduct implements Action {
@@ -18,10 +18,10 @@ export class LoadItems implements Action {
   
     constructor(public payload:{name:any;value:any}) {}
   }
-  export class Remove implements Action {
-    readonly type = CartActionTypes.Remove;
+  export class Update implements Action {
+    readonly type = CartActionTypes.Update;
   
     constructor(public payload:{pName:any;nName:any,arr:any}) {}
   }
   
-export type CartActions = AddProduct | LoadItems | Remove;
+export type CartActions = AddProduct | LoadItems | Update;

@@ -11,7 +11,7 @@ export function reducer(state=initialState, action: CartActions) {
             return {
                 cart: [...state.cart, action.payload]
             }
-            case CartActionTypes.Remove:
+            case CartActionTypes.Update:
                 return {
                     cart: [...action.payload.arr,
                   ...state.cart.filter(item => item.name !== action.payload.pName)]
