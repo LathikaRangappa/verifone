@@ -10,17 +10,12 @@ import * as Cart from "./../store/actions";
   styles: []
 })
 export class EditListnameComponent implements OnInit {
-  editListName: any;
-  lists: any;
-  previousName: any;
-  originalData: any;
+  editList: any;
   constructor(private store: Store<any>, private dialogRef: MatDialogRef<EditListnameComponent>, @Inject(MAT_DIALOG_DATA) data) {
-    this.editListName = data.name;
-    this.originalData = data;
-    this.previousName = data.name;
+    this.editList = data;
   }
   updateList() {
-    this.dialogRef.close(this.editListName);
+    this.dialogRef.close(this.editList);
   }
   ngOnInit(): void {
   }

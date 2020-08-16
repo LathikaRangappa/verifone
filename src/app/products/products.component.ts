@@ -16,8 +16,8 @@ export class ProductsComponent implements OnInit {
   lists: any;
   queryString: any;
 
-  constructor(private service: SearchServiceService,private store:Store<{ items: any ; cart: [] }>, private dialog: MatDialog) { }
-  
+  constructor(private service: SearchServiceService, private store: Store<{ items: any; cart: [] }>, private dialog: MatDialog) { }
+
   ngOnInit() {
   }
   search(query) {
@@ -28,9 +28,9 @@ export class ProductsComponent implements OnInit {
     })
   }
   authorPage(image) {
-    if(image.user.portfolio_url != null){
-    window.open(image.user.portfolio_url);
-    }else{
+    if (image.user.portfolio_url != null) {
+      window.open(image.user.portfolio_url);
+    } else {
       alert("author details not available")
     }
   }

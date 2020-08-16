@@ -11,7 +11,7 @@ export enum CartActionTypes {
 
 export class AddProduct implements Action {
     readonly type = CartActionTypes.ADD_PRODUCT
-    constructor(public payload: {name:any;value:any}){}
+    constructor(public payload: {name:any;desc:any,value:any}){}
 }
 export class LoadItems implements Action {
     readonly type = CartActionTypes.LoadSuccess;
@@ -21,7 +21,7 @@ export class LoadItems implements Action {
   export class Update implements Action {
     readonly type = CartActionTypes.Update;
   
-    constructor(public payload:{pName:any;nName:any,arr:any}) {}
+    constructor(public payload:{pName:any;nName:any,nDesc:any,arr:any}) {}
   }
   
 export type CartActions = AddProduct | LoadItems | Update;

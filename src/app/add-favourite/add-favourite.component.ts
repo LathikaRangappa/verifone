@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SearchServiceService } from '../search-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
 import * as Cart from "./../store/actions";
 
@@ -11,37 +11,37 @@ import * as Cart from "./../store/actions";
   styles: []
 })
 export class AddFavouriteComponent implements OnInit {
-  listName : any = "";
-  data:any;
-  favImages : any;
+  listName: any = "";
+  data: any;
   listValues: any = [];
   lists = [];
-  object: { name: any; imageUrl: any; };
+  listDesc: any = "";
   showInput: boolean;
   favList: boolean;
   favLists: any[];
-  isCreateList: boolean = false;
   existingList: any;
-  constructor(private service :SearchServiceService,private store:Store<any>,public snackBar: MatSnackBar,private dialogRef: MatDialogRef<AddFavouriteComponent>,@Inject(MAT_DIALOG_DATA) data) { 
+  constructor(private service: SearchServiceService, private store: Store<any>, public snackBar: MatSnackBar, private dialogRef: MatDialogRef<AddFavouriteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.data = data;
   }
- 
+
   ngOnInit(): void {
-    this.store.select('cart').subscribe(data=>{
+    this.store.select('cart').subscribe(data => {
       console.log(data.cart);
-      this.existingList =  [...new Set(data['cart'].map(x=>x.name))]
-      if(this.existingList.length != 0)
+      this.existingList = [...new Set(data['cart'].map(x => {
+        return x.name;
+      }))]
+      if (this.existingList.length != 0)
         this.showInput = false;
     })
   }
-  addSelected(){
+  addSelected() {
     this.service.sendData(this.data)
   }
-  addToFavourities(listName){
-    this.store.dispatch(new Cart.AddProduct({name:listName,value:this.data}))
+  addToFavourities(listName, listDesc) {
+    this.store.dispatch(new Cart.AddProduct({ name: listName, desc: this.listDesc, value: this.data }))
   }
-  addNewList(){
+  addNewList() {
     this.showInput = true
-  }  
- 
+  }
+
 }

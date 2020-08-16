@@ -6,9 +6,10 @@
 </div>
 <hr/>
 
-<button mat-button class="addBtn btn btn-primary" type="button" (click)="addNewList()">Create List</button>
+<button *ngIf= "!showInput" mat-button class="addBtn btn btn-primary" type="button" (click)="addNewList()">Create List</button>
 <br/>
 <div *ngIf= "showInput">
-<input class="search" mat-input [(ngModel)]="listName" name="search"  placeholder="Enter List Name" required>
-<button mat-raised-button mat-dialog-close (click)="addToFavourities(listName)" class="saveBtn btn btn-primary">Add</button>
+<input class="search" mat-input [(ngModel)]="listName" name="search"  placeholder="Enter List Name" required><br/>
+<input class="desc" mat-input [(ngModel)]="listDesc" name="listDesc"  placeholder="Enter List Description" required><br/>
+<button mat-raised-button mat-dialog-close (click)="addToFavourities(listName,listDesc)" class="saveBtn btn btn-primary">Add</button>
 </div>

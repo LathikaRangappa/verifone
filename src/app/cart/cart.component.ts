@@ -34,40 +34,33 @@ export class CartComponent implements OnInit {
   saveBtn: boolean = false;
   flag: boolean = true;
   constructor(private store: Store<any>, private dialog: MatDialog) {
-
     this.store.select('cart').subscribe(data => {
-      console.log("1111111111111111111",data['cart'])
+      console.log("dayaaaaaaaa",data);
       this.modifyObj(data['cart']);
     })
   }
 modifyObj(data){
-  
   var op = {};
   var uniqNames = [...new Set(data.map(item => item.name))]
-  console.log(uniqNames)
   uniqNames.forEach((uName: string) => {
     data.map(item => {
       if (item.name === uName) {
         if (!op[uName]) op[uName] = [];
-        op[uName].push(item.value)
+        op[uName].push({'value':item.value,'desc':item.desc});
       }
     })
-    console.log("----------------------", op);
     var newOp = Object.keys(op).map(item => {
+      console.log(item)
       return {
         name: item,
-        value: op[item].map(opItem => opItem)
+        desc:[...new Set(op[item].map(opItem => opItem.desc))],
+        value: op[item].map(opItem => opItem.value)
       }
     }
     );
-
-    console.log("-----------------", newOp);
     this.lists = newOp;
   });
-
-
 }
-
   downloadFav(obj) {
     this.toDataURL(obj, function (dataUrl) {
       console.log(dataUrl)
@@ -104,12 +97,13 @@ modifyObj(data){
       this.store.select('cart').subscribe(data => {
         data.cart.filter(item=>{
           if(item.name === pname){
-            var anotherNewObject = { ...item, name: result }
+            var anotherNewObject = { ...item, name: result.name,desc:result.desc }
             arr.push(anotherNewObject)
           }
         })
       })
-      this.store.dispatch(new Cart.Update({pName:pname,nName:result,arr:arr}))
+      console.log("arry",arr)
+      this.store.dispatch(new Cart.Update({pName:pname,nName:result.name,nDesc:result.desc,arr:arr}))
       this.store.select('cart').subscribe(data => {
       console.log(data['cart'])
         this.modifyObj(data['cart']);
