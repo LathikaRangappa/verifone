@@ -19,7 +19,6 @@ export class AddFavouriteComponent implements OnInit {
   constructor(private service: SearchServiceService, private store: Store<any>, public snackBar: MatSnackBar, private dialogRef: MatDialogRef<AddFavouriteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.data = data;
   }
-
   ngOnInit(): void {
     this.store.select('cart').subscribe(data => {
       console.log(data.cart);

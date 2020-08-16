@@ -1,23 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
-import * as Cart from "./../store/actions";
+import * as Cart from "../store/actions";
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
 import { EditListnameComponent } from '../edit-listname/edit-listname.component';
 
 @Component({
-  selector: 'app-cart',
-  template:
-    `
-<button  [routerLink]="['/products']" class="btn btn-info">Back to home</button>
-<div *ngFor="let obj of lists;let i = index">
-<input type="text" ngModel = "{{obj.name}}" value="{{obj.name}}" [disabled]>
-<button (click)="edit(i,obj)" class="btn-info">Edit</button>
-<div *ngFor="let obj1 of obj.value" >
-    <img src="{{obj1.urls.small}}" (click)="downloadFav(obj1)" class="size">
-</div>
-</div>
-  `,
+  selector: 'app-fav',
+  templateUrl:'./fav.component.html',
   styles: [`
 .size{
 width:200px;
@@ -25,7 +15,7 @@ height:200px;
 margin-bottom:10px
   }`]
 })
-export class CartComponent implements OnInit {
+export class FavComponent implements OnInit {
 
   cart: Observable<Array<any>>
   lists: any;
