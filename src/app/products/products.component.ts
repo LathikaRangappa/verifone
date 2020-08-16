@@ -40,7 +40,7 @@ export class ProductsComponent implements OnInit {
       alert("author details not available")
     }
   }
-  addSelected(i, product) {
+  addSelected(product) {
     const dialogRef = this.dialog.open(AddFavouriteComponent, {
       width: '500px',
       height: '200px',

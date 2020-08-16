@@ -7,7 +7,7 @@ import { EditListnameComponent } from '../edit-listname/edit-listname.component'
 
 @Component({
   selector: 'app-fav',
-  templateUrl:'./fav.component.html',
+  templateUrl: './fav.component.html',
   styles: [`
 .size{
 width:200px;
@@ -75,19 +75,20 @@ export class FavComponent implements OnInit {
       data: obj
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      var arr = [];
-      this.store.select('cart').subscribe(data => {
-        data.cart.filter(item => {
-          if (item.name === pname) {
-            var anotherNewObject = { ...item, name: result.name, desc: result.desc }
-            arr.push(anotherNewObject)
-          }
+      if (result) {
+        var arr = [];
+        this.store.select('cart').subscribe(data => {
+          data.cart.filter(item => {
+            if (item.name === pname) {
+              var anotherNewObject = { ...item, name: result.name, desc: result.desc }
+              arr.push(anotherNewObject)
+            }
+          })
         })
-      })
-      console.log("arr with values replaced", arr)
-      this.store.dispatch(new Cart.Update({ pName: pname, nName: result.name, nDesc: result.desc, arr: arr }))
-      this.retreiveData();
+        console.log("arr with values replaced", arr)
+        this.store.dispatch(new Cart.Update({ pName: pname, nName: result.name, nDesc: result.desc, arr: arr }))
+        this.retreiveData();
+      }
     });
   }
   retreiveData() {
