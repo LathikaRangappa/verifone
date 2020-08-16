@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, Effect, ofType, act } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CartActionTypes } from './actions';
@@ -10,15 +10,16 @@ export class storeEffects {
   @Effect()
   loadItems$ = this.actions$.pipe(
     ofType(CartActionTypes.LoadItems),
-    mergeMap(() =>
-      this.serv.getSearchResult(null).pipe(
+    mergeMap((action:any) =>
+      this.serv.getSearchResult(action.payload.queryString).pipe(
         map(items => {
-          return { type: CartActionTypes.LoadSuccess, payload: items };
+          return { type: CartActionTypes.LoadSuccess, payload: items['results'] };
         }),
         catchError(() => EMPTY)
       )
     )
-  );
+  )
+  
 
   constructor(
     private actions$: Actions,

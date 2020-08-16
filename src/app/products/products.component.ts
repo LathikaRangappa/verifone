@@ -19,12 +19,20 @@ export class ProductsComponent implements OnInit {
   constructor(private service: SearchServiceService, private store: Store<{ items: any; cart: [] }>, private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.store.select('cart').subscribe(data => {
+      console.log(data['item']);
+      if (data['item'].length != 0) {
+        this.response = data['item'][0];
+      }
+    })
   }
   search(query) {
-    this.service.getSearchResult(query).subscribe(result => {
-      console.log(result);
-      this.queryString = query;
-      this.response = result["results"];
+    this.store.dispatch(new Cart.LoadItems({ queryString: query }))
+    this.store.select('cart').subscribe(data => {
+      console.log(data['item']);
+      if (data['item'].length != 0) {
+        this.response = data['item'][0];
+      }
     })
   }
   authorPage(image) {

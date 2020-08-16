@@ -14,9 +14,14 @@ export class AddProduct implements Action {
     constructor(public payload: {name:any;desc:any,value:any}){}
 }
 export class LoadItems implements Action {
+    readonly type = CartActionTypes.LoadItems;
+  
+    constructor(public payload:{queryString:any}) {}
+  }
+  export class LoadSuccess implements Action {
     readonly type = CartActionTypes.LoadSuccess;
   
-    constructor(public payload:{name:any;value:any}) {}
+    constructor(public payload:any) {}
   }
   export class Update implements Action {
     readonly type = CartActionTypes.Update;
@@ -24,4 +29,4 @@ export class LoadItems implements Action {
     constructor(public payload:{pName:any;nName:any,nDesc:any,arr:any}) {}
   }
   
-export type CartActions = AddProduct | LoadItems | Update;
+export type CartActions = AddProduct | LoadItems | Update | LoadSuccess;
