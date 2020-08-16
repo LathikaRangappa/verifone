@@ -28,7 +28,8 @@ export class AddFavouriteComponent implements OnInit {
  
   ngOnInit(): void {
     this.store.select('cart').subscribe(data=>{
-      this.existingList =  [...new Set(data.map(x=>x.name))]
+      console.log(data.cart);
+      this.existingList =  [...new Set(data['cart'].map(x=>x.name))]
       if(this.existingList.length != 0)
         this.showInput = false;
     })

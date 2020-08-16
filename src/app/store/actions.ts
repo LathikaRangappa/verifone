@@ -4,7 +4,9 @@ import { Action } from '@ngrx/store'
 export enum CartActionTypes {
     ADD_PRODUCT = 'ADD_PRODUCT',
     LoadItems = 'Load items from server',
-    LoadSuccess = 'Load success'
+    LoadSuccess = 'Load success',
+    UPDATE_PRODUCT = "UPDATE_PRODUCT",
+    Remove = "Remove"
 }
 
 export class AddProduct implements Action {
@@ -16,5 +18,10 @@ export class LoadItems implements Action {
   
     constructor(public payload:{name:any;value:any}) {}
   }
+  export class Remove implements Action {
+    readonly type = CartActionTypes.Remove;
   
-export type CartActions = AddProduct | LoadItems ;
+    constructor(public payload:{pName:any;nName:any,arr:any}) {}
+  }
+  
+export type CartActions = AddProduct | LoadItems | Remove;

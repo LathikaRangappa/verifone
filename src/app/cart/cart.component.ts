@@ -36,34 +36,37 @@ export class CartComponent implements OnInit {
   constructor(private store: Store<any>, private dialog: MatDialog) {
 
     this.store.select('cart').subscribe(data => {
-      this.lists = data;
-      var op = {};
-      var uniqNames = [...new Set(data.map(item => item.name))]
-      console.log(uniqNames)
-      uniqNames.forEach((uName: string) => {
-        data.map(item => {
-          if (item.name === uName) {
-            if (!op[uName]) op[uName] = [];
-            op[uName].push(item.value)
-          }
-        })
-        console.log("----------------------", op);
-        var newOp = Object.keys(op).map(item => {
-          return {
-            name: item,
-            value: op[item].map(opItem => opItem)
-          }
-        }
-        );
-
-        console.log("-----------------", newOp);
-        this.lists = newOp;
-      });
-
-
+      console.log("1111111111111111111",data['cart'])
+      this.modifyObj(data['cart']);
     })
   }
+modifyObj(data){
+  
+  var op = {};
+  var uniqNames = [...new Set(data.map(item => item.name))]
+  console.log(uniqNames)
+  uniqNames.forEach((uName: string) => {
+    data.map(item => {
+      if (item.name === uName) {
+        if (!op[uName]) op[uName] = [];
+        op[uName].push(item.value)
+      }
+    })
+    console.log("----------------------", op);
+    var newOp = Object.keys(op).map(item => {
+      return {
+        name: item,
+        value: op[item].map(opItem => opItem)
+      }
+    }
+    );
 
+    console.log("-----------------", newOp);
+    this.lists = newOp;
+  });
+
+
+}
 
   downloadFav(obj) {
     this.toDataURL(obj, function (dataUrl) {
@@ -88,6 +91,8 @@ export class CartComponent implements OnInit {
     xhr.send();
   }
   edit(i, obj) {
+    var pname = obj.name;
+    console.log(obj)
     const dialogRef = this.dialog.open(EditListnameComponent, {
       width: '500px',
       height: '200px',
@@ -95,8 +100,20 @@ export class CartComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      obj.name = result;
-      //  this.store.dispatch(new Cart.AddProduct({name:obj.name,value:obj.value}))
+      var arr = [];
+      this.store.select('cart').subscribe(data => {
+        data.cart.filter(item=>{
+          if(item.name === pname){
+            var anotherNewObject = { ...item, name: result }
+            arr.push(anotherNewObject)
+          }
+        })
+      })
+      this.store.dispatch(new Cart.Remove({pName:pname,nName:result,arr:arr}))
+      this.store.select('cart').subscribe(data => {
+      console.log(data['cart'])
+        this.modifyObj(data['cart']);
+      })
     });
   }
   ngOnInit() {
