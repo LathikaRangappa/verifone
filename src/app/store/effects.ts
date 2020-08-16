@@ -13,7 +13,7 @@ export class storeEffects {
     mergeMap((action:any) =>
       this.serv.getSearchResult(action.payload.queryString).pipe(
         map(items => {
-          return { type: CartActionTypes.LoadSuccess, payload: items['results'] };
+          return { type: CartActionTypes.LoadSuccess, payload: {queryString:action.payload.queryString,items:items['results']}};
         }),
         catchError(() => EMPTY)
       )

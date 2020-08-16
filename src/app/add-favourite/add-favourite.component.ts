@@ -13,12 +13,8 @@ import * as Cart from "./../store/actions";
 export class AddFavouriteComponent implements OnInit {
   listName: any = "";
   data: any;
-  listValues: any = [];
-  lists = [];
   listDesc: any = "";
   showInput: boolean;
-  favList: boolean;
-  favLists: any[];
   existingList: any;
   constructor(private service: SearchServiceService, private store: Store<any>, public snackBar: MatSnackBar, private dialogRef: MatDialogRef<AddFavouriteComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.data = data;
@@ -33,9 +29,6 @@ export class AddFavouriteComponent implements OnInit {
       if (this.existingList.length != 0)
         this.showInput = false;
     })
-  }
-  addSelected() {
-    this.service.sendData(this.data)
   }
   addToFavourities(listName, listDesc) {
     this.store.dispatch(new Cart.AddProduct({ name: listName, desc: this.listDesc, value: this.data }))

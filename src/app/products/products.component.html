@@ -3,7 +3,7 @@
     <div class="pull-right">
       <h2>Search Image</h2>
       <form>
-        <input type="search" (keyup)="search($event.target.value)">
+        <input type="search" [(ngModel)]="searchQuery" name = "searchQuery" (keyup)="search($event.target.value)">
       </form>
     </div>
     <div>

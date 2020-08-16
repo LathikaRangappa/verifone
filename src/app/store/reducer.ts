@@ -22,7 +22,7 @@ export function reducer(state=initialState, action: CartActions) {
             case CartActionTypes.LoadItems:
                 return  {
                     ...state,
-                    item:[...state.item]
+                    item:[{queryString:action.payload.queryString,...state.item}]
                 }
             case CartActionTypes.LoadSuccess:
                 return {
