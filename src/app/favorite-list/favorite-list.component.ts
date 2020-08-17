@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import * as Cart from "../store/actions";
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { EditListnameDialogComponent } from '../edit-listname-dialog/edit-listname-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

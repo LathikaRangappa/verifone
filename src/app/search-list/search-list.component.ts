@@ -4,6 +4,7 @@ import { AddFavouriteDialogComponent } from '../add-favourite-dialog/add-favouri
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from "@ngrx/store";
 import * as Cart from "../store/actions";
+
 @Component({
   selector: 'app-products',
   templateUrl: './search-list.component.html',
