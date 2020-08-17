@@ -1,6 +1,10 @@
 
-    <div mat-dialog-actions>
-        <input class="search" mat-input [(ngModel)]="editList.name" value="{{editList.name}}"  placeholder="Enter List Name" required> <br/>
-        <input class="search" mat-input [(ngModel)]="editList.desc" value="{{editList.desc}}" placeholder="Enter List Desc" required> <br/>
-        <button mat-button (click)="updateList()">Update</button>
-      </div> 
+      <div mat-dialog-actions>
+        <form class="col-md-8">
+            <input class="search form-control" mat-input [(ngModel)]="editList.name" value="{{editList.name}}" name="search" placeholder="Enter List Name"
+                required><br />
+            <input class="desc form-control" mat-input [(ngModel)]="editList.desc" value="{{editList.desc}}" name="listDesc"
+                placeholder="Enter List Description" required><br />
+            <button mat-raised-button  (click)="updateList()" class="saveBtn btn btn-primary">Add</button>
+        </form>
+    </div>
