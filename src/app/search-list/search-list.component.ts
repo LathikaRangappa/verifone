@@ -46,7 +46,7 @@ export class SearchListComponent implements OnInit {
   addSelected(product) {
     const dialogRef = this.dialog.open(AddFavouriteDialogComponent, {
       width: '500px',
-      height: '200px',
+      height: '300px',
       data: product
     });
     dialogRef.afterClosed().subscribe(result => {
