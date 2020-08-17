@@ -30,7 +30,11 @@ export class AddFavouriteDialogComponent implements OnInit {
     })
   }
   addToFavourities(listName, listDesc) {
+    if(listName != ''){
       this.store.dispatch(new Cart.AddProduct({ name: listName, desc: this.listDesc, value: this.data }))
+    }else{
+      alert("Input fields cannot be empty")
+    }
   }
   addNewList() {
     this.showInput = true
