@@ -26,10 +26,14 @@ export class SearchListComponent implements OnInit {
     this.store.select('cart').subscribe(data => {
       this.storeValues = data;
       console.log(data)
+      if(data['item']){
       if (data['item'].length != 0) {
         this.searchQuery = data['item'][0].queryString;
         this.response = data['item'][0].items;
       }
+    }else{
+      alert("Error Occured from the server---"+this.storeValues['error']['statusText'])
+    }
     })
   }
   search(query) {
