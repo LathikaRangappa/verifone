@@ -1,15 +1,22 @@
-<div *ngIf= "!showInput">
+<div *ngIf="!showInput">
     <h4>Add to existing Lists</h4>
-    <div  class="display:block" *ngFor="let list of existingList">
-        <a style="cursor:pointer;color:blue;text-decoration-line: underline;" mat-dialog-close (click)="addToFavourities(list)">{{list}}</a>
-    </div>    
+    <div class="display:block" *ngFor="let list of existingList">
+        <a style="cursor:pointer;color:blue;text-decoration-line: underline;" mat-dialog-close
+            (click)="addToFavourities(list)">{{list}}</a>
+    </div>
 </div>
-<hr/>
+<hr />
 
-<button *ngIf= "!showInput" mat-button class="addBtn btn btn-primary" type="button" (click)="addNewList()">Create List</button>
-<br/>
-<div *ngIf= "showInput">
-<input class="search" mat-input [(ngModel)]="listName" name="search"  placeholder="Enter List Name" required><br/>
-<input class="desc" mat-input [(ngModel)]="listDesc" name="listDesc"  placeholder="Enter List Description" required><br/>
-<button mat-raised-button mat-dialog-close (click)="addToFavourities(listName,listDesc)" class="saveBtn btn btn-primary">Add</button>
+<button *ngIf="!showInput" mat-button class="addBtn btn btn-primary" type="button" (click)="addNewList()">Create
+    List</button>
+<br />
+<div *ngIf="showInput">
+    <form class="col-md-8">
+        <input class="search form-control" mat-input [(ngModel)]="listName" name="search" placeholder="Enter List Name"
+            required><br />
+        <input class="desc form-control" mat-input [(ngModel)]="listDesc" name="listDesc"
+            placeholder="Enter List Description" required><br />
+        <button mat-raised-button mat-dialog-close (click)="addToFavourities(listName,listDesc)"
+            class="saveBtn btn btn-primary">Add</button>
+    </form>
 </div>

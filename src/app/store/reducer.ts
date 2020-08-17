@@ -28,6 +28,12 @@ export function reducer(state=initialState, action: CartActions) {
                     ...state,
                     item:[action.payload]
                   };
+            case CartActionTypes.LoadFailure: {
+                return {
+                    ...state,
+                    errorMessage: 'Incorrect email and/or password.'
+                    };
+                  }
         default: 
             return state    
     }

@@ -2,11 +2,12 @@ import { Action } from '@ngrx/store'
 
 
 export enum CartActionTypes {
-    ADD_PRODUCT = 'ADD_PRODUCT',
-    LoadItems = 'Load items from server',
-    LoadSuccess = 'Load success',
-    UPDATE_PRODUCT = "UPDATE_PRODUCT",
-    Update = "Update"
+  ADD_PRODUCT = 'ADD_PRODUCT',
+  LoadItems = 'Load items from server',
+  LoadSuccess = 'Load success',
+  UPDATE_PRODUCT = "UPDATE_PRODUCT",
+  Update = "Update",
+  LoadFailure = "LoadFailure"
 }
 
 export class AddProduct implements Action {
@@ -23,10 +24,14 @@ export class LoadItems implements Action {
   
     constructor(public payload:any) {}
   }
+  export class LoadFailure implements Action {
+    readonly type = CartActionTypes.LoadFailure;
+    constructor(public payload: any) {}
+  }
   export class Update implements Action {
     readonly type = CartActionTypes.Update;
   
     constructor(public payload:{pName:any;nName:any,nDesc:any,arr:any}) {}
   }
   
-export type CartActions = AddProduct | LoadItems | Update | LoadSuccess;
+export type CartActions = AddProduct | LoadItems | Update | LoadSuccess | LoadFailure;

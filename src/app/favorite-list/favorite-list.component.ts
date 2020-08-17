@@ -71,7 +71,7 @@ export class FavoritelistComponent implements OnInit {
     console.log(obj)
     const dialogRef = this.dialog.open(EditListnameDialogComponent, {
       width: '500px',
-      height: '200px',
+      height: '400px',
       data: obj
     });
     dialogRef.afterClosed().subscribe(result => {

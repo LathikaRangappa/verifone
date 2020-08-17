@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { CartActionTypes } from '../store/actions';
-import * as Cart from "../store/actions";
 
 @Component({
   selector: 'app-edit-listname',
@@ -15,7 +13,11 @@ export class EditListnameDialogComponent implements OnInit {
     this.editList = data;
   }
   updateList() {
-    this.dialogRef.close(this.editList);
+    if(this.editList.name !== '' && this.editList.desc !== ''){
+      this.dialogRef.close(this.editList);
+    }else {
+      alert("Input fields cannot be empty")
+    }
   }
   ngOnInit(): void {
   }

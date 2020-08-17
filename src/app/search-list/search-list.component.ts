@@ -25,6 +25,7 @@ export class SearchListComponent implements OnInit {
   retrieveValues(){
     this.store.select('cart').subscribe(data => {
       this.storeValues = data;
+      console.log(data)
       if (data['item'].length != 0) {
         this.searchQuery = data['item'][0].queryString;
         this.response = data['item'][0].items;
@@ -52,7 +53,9 @@ export class SearchListComponent implements OnInit {
       console.log(result)
     });
   }
-  
+  trackByEmpCode(index: number, image: any): string {
+    return image.id;
+ }
   onhover(obj){
     this.retrieveValues();
     if(this.storeValues['cart'].length != 0){
