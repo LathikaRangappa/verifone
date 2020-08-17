@@ -1,5 +1,5 @@
 
-<button  [routerLink]="['/products']" class="btn btn-info">Back to home</button>
+<button  [routerLink]="['/search']" class="btn btn-info">Back to home</button>
 <div *ngFor="let obj of lists;let i = index">
 <input type="text" ngModel = "{{obj.name}}" value="{{obj.name}}" [disabled]>
 <button (click)="edit(i,obj)" class="btn-info">Edit</button>

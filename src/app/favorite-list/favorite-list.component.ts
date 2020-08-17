@@ -3,11 +3,11 @@ import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import * as Cart from "../store/actions";
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
-import { EditListnameComponent } from '../edit-listname/edit-listname.component';
+import { EditListnameDialogComponent } from '../edit-listname-dialog/edit-listname-dialog.component';
 
 @Component({
   selector: 'app-fav',
-  templateUrl: './fav.component.html',
+  templateUrl: './favorite-list.component.html',
   styles: [`
 .size{
 width:200px;
@@ -15,7 +15,7 @@ height:200px;
 margin-bottom:10px
   }`]
 })
-export class FavComponent implements OnInit {
+export class FavoritelistComponent implements OnInit {
 
   cart: Observable<Array<any>>
   lists: any;
@@ -69,7 +69,7 @@ export class FavComponent implements OnInit {
   edit(i, obj) {
     var pname = obj.name;
     console.log(obj)
-    const dialogRef = this.dialog.open(EditListnameComponent, {
+    const dialogRef = this.dialog.open(EditListnameDialogComponent, {
       width: '500px',
       height: '200px',
       data: obj

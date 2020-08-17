@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchServiceService } from '../search-service.service';
-import { AddFavouriteComponent } from '../add-favourite/add-favourite.component';
+import { DataService } from '../shared/service/data.service';
+import { AddFavouriteDialogComponent } from '../add-favourite-dialog/add-favourite-dialog.component'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from "@ngrx/store";
-import * as Cart from "./../store/actions";
-
+import * as Cart from "../store/actions";
 @Component({
   selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ["./products.component.scss"]
+  templateUrl: './search-list.component.html',
+  styleUrls: ["./search-list.component.scss"]
 })
-export class ProductsComponent implements OnInit {
+export class SearchListComponent implements OnInit {
 
   response: any;
   lists: any;
   queryString: any;
   searchQuery:any;
-  constructor(private service: SearchServiceService, private store: Store<{ items: any; cart: [] }>, private dialog: MatDialog) { }
+  storeValues: any;
+  disableBtn: boolean = false;
+  constructor(private service: DataService, private store: Store<{ items: any; cart: [] }>, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.retrieveValues();
   }
   retrieveValues(){
     this.store.select('cart').subscribe(data => {
+      this.storeValues = data;
       if (data['item'].length != 0) {
         this.searchQuery = data['item'][0].queryString;
         this.response = data['item'][0].items;
@@ -41,7 +43,7 @@ export class ProductsComponent implements OnInit {
     }
   }
   addSelected(product) {
-    const dialogRef = this.dialog.open(AddFavouriteComponent, {
+    const dialogRef = this.dialog.open(AddFavouriteDialogComponent, {
       width: '500px',
       height: '200px',
       data: product
@@ -50,4 +52,17 @@ export class ProductsComponent implements OnInit {
       console.log(result)
     });
   }
+  
+  onhover(obj){
+    this.retrieveValues();
+    if(this.storeValues['cart'].length != 0){
+      this.disableBtn = this.storeValues['cart'].forEach((item)=>{
+        if(JSON.stringify(item.value) === JSON.stringify(obj)){
+          return true;
+        }else{
+          return false;
+        }
+      })
+  }
+}
 }

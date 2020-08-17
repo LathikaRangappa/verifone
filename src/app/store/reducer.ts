@@ -1,5 +1,4 @@
 import { CartActionTypes, CartActions } from "./actions";
-import { act } from '@ngrx/effects';
 
 export let initialState = {
     cart:[],
