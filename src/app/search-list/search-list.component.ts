@@ -14,7 +14,7 @@ export class SearchListComponent implements OnInit {
   response: any;
   lists: any;
   queryString: any;
-  searchQuery:any;
+  searchQuery: any;
   storeValues: any;
   disableBtn: boolean = false;
   constructor(private service: DataService, private store: Store<{ items: any; cart: [] }>, private dialog: MatDialog) { }
@@ -22,18 +22,18 @@ export class SearchListComponent implements OnInit {
   ngOnInit() {
     this.retrieveValues();
   }
-  retrieveValues(){
+  retrieveValues() {
     this.store.select('cart').subscribe(data => {
       this.storeValues = data;
       console.log(data)
-      if(data['item']){
-      if (data['item'].length != 0) {
-        this.searchQuery = data['item'][0].queryString;
-        this.response = data['item'][0].items;
+      if (data['item']) {
+        if (data['item'].length != 0) {
+          this.searchQuery = data['item'][0].queryString;
+          this.response = data['item'][0].items;
+        }
+      } else {
+        alert("Error Occured from the server---" + this.storeValues['error']['statusText'])
       }
-    }else{
-      alert("Error Occured from the server---"+this.storeValues['error']['statusText'])
-    }
     })
   }
   search(query) {
@@ -59,17 +59,17 @@ export class SearchListComponent implements OnInit {
   }
   trackByEmpCode(index: number, image: any): string {
     return image.id;
- }
-  onhover(obj){
+  }
+  onhover(obj) {
     this.retrieveValues();
-    if(this.storeValues['cart'].length != 0){
-      this.disableBtn = this.storeValues['cart'].forEach((item)=>{
-        if(JSON.stringify(item.value) === JSON.stringify(obj)){
+    if (this.storeValues['cart'].length != 0) {
+      this.disableBtn = this.storeValues['cart'].forEach((item) => {
+        if (JSON.stringify(item.value) === JSON.stringify(obj)) {
           return true;
-        }else{
+        } else {
           return false;
         }
       })
+    }
   }
-}
 }

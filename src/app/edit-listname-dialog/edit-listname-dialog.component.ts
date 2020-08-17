@@ -13,9 +13,9 @@ export class EditListnameDialogComponent implements OnInit {
     this.editList = data;
   }
   updateList() {
-    if(this.editList.name !== '' && this.editList.desc !== ''){
+    if (this.editList.name !== '' && this.editList.desc !== '') {
       this.dialogRef.close(this.editList);
-    }else {
+    } else {
       alert("Input fields cannot be empty")
     }
   }
