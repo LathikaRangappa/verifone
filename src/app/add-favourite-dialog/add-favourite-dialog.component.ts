@@ -32,12 +32,19 @@ export class AddFavouriteDialogComponent implements OnInit {
   addToFavourities(listName, listDesc) {
     if(listName != ''){
       this.store.dispatch(new Cart.AddProduct({ name: listName, desc: this.listDesc, value: this.data }))
+      this.openSnackBar(this.data.alt_description, "Added to Favourities");
     }else{
       alert("Input fields cannot be empty")
     }
   }
   addNewList() {
     this.showInput = true
+  }
+   //snackBar
+   openSnackBar(message: any, action: string) {
+    this.snackBar.open(message, action, {
+        duration: 3000,
+    });
   }
 
 }

@@ -4,22 +4,24 @@ import { Observable } from "rxjs/Observable";
 import * as Cart from "../store/actions";
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from "@angular/material/dialog";
 import { EditListnameDialogComponent } from '../edit-listname-dialog/edit-listname-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fav',
   templateUrl: './favorite-list.component.html',
   styles: [`
-.size{
-width:200px;
-height:200px;
-margin-bottom:10px
-  }`]
+            .size{
+            width:200px;
+            height:200px;
+            margin-bottom:10px
+              }
+          `]
 })
 export class FavoritelistComponent implements OnInit {
 
   cart: Observable<Array<any>>
   lists: any;
-  constructor(private store: Store<any>, private dialog: MatDialog) {
+  constructor(private store: Store<any>, public snackBar: MatSnackBar, private dialog: MatDialog) {
     this.retreiveData();
   }
   modifyObj(data) {
@@ -76,6 +78,7 @@ export class FavoritelistComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.openSnackBar(result.name , "Updated Successfully");
         var arr = [];
         this.store.select('cart').subscribe(data => {
           data.cart.filter(item => {
@@ -95,6 +98,11 @@ export class FavoritelistComponent implements OnInit {
     this.store.select('cart').subscribe(data => {
       this.modifyObj(data['cart']);
     })
+  }
+  openSnackBar(message: any, action: string) {
+    this.snackBar.open(message, action, {
+        duration: 3000,
+    });
   }
   ngOnInit() {
   }
