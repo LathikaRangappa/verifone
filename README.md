@@ -20,7 +20,7 @@ This project was generated with Angular CLI version 10.0.5.
 * [ngrx/effects](https://ngrx.io/guide/effects)
 
 ### Project Description
-This project allows users to search for images using any FREE images using UNSPLASH search API.
+This project allows users to search for images using UNSPLASH search API.
 
 The results are updated live as the user type into the search box:
 
