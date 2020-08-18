@@ -3,7 +3,7 @@
 <br/>
 <br/>
 <div *ngFor="let obj of lists;let i = index">
-<input type="text" ngModel = "{{obj.name}}" value="{{obj.name}}" [disabled]>
+<input type="text" ngModel = "{{obj.name}}" value="{{obj.name}}" [disabled]="true">
 <button (click)="edit(i,obj)" class="btn-info">Edit</button>
 <br/><br/>
 <div *ngFor="let obj1 of obj.value" >
