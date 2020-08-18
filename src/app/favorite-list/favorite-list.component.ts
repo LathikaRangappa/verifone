@@ -47,7 +47,7 @@ export class FavoritelistComponent implements OnInit {
     });
   }
   downloadFav(obj) {
-    this.toDataURL(obj, function (dataUrl) {
+    this.toDataURL(obj.urls.small, function (dataUrl) {
       console.log(dataUrl)
       var a = document.createElement("a"); //Create <a>
       a.href = dataUrl; //Image Base64 Goes here
